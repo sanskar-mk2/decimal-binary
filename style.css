@@ -1,0 +1,33 @@
+#main-div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background-color: #373435;
+}
+
+input {
+    padding: 1em;
+    margin: 0.5em;
+    width: 80vw;
+    border-radius: 5px;
+    background-color: #373435;
+    color: #fefefe;
+    font-size: 1.1em;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    color: #fefefe;
+    font-size: 1em;
+}
+
+.error {
+    background-color: #ed3237;
+}
+
+.info {
+    visibility: hidden;
+}
