@@ -9,16 +9,22 @@
     <link rel="stylesheet" href="./src/styles/style.css">
 </head>
 
-<body>
+<body onload="populate_bits()">
     <div id="main-div">
         <img src="./assets/img/Sprite-0001.png">
         <br>
-        <input type="text" id="bin" oninput="horners_scheme()" placeholder="binary" maxlength="48">
-        <input id="bininfo" disabled class="info"
-            value="⚠️ You must enter only '0' and '1' and length should be less than 48 bits">
+        <input type="text" id="bin" oninput="bin2dec()" placeholder="binary" maxlength="48">
+        <div id="bininfo" class="info">⚠️ You must enter only '0' and '1' and length should be less than 48 bits</div>
         <input type="text" id="dec" oninput="dec2bin()" placeholder="decimal" maxlength="12">
-        <input id="decinfo" disabled class="info"
-            value="⚠️ You must enter only natural numbers and length should be less than 12 digits">
+        <div id="decinfo" class="info">⚠️ You must enter only natural numbers and length should be less than 12 digits
+        </div>
+        <div class="myhr"></div>
+        <h1><span class="white">Bit</span><span class="red">Flipper</span></h1>
+        <p>(click on the bits to flip them)</p>
+        <div id="bits"></div>
+    </div>
+    <div id="flipper-main">
+        <div id="bits"></div>
     </div>
     <script src="./src/scripts/script.js" defer></script>
 </body>
