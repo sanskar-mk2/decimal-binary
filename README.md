@@ -8,9 +8,9 @@ Converts decimal to binary and vice-versa.
 
 ## Features
 
-- Converts both ways
-- Shows result as you enter
-- Robust error-handling
+-   Converts both ways
+-   Shows result as you enter
+-   Robust error-handling
 
 ## Example Screenshots
 
@@ -18,3 +18,4 @@ Converts decimal to binary and vice-versa.
 
 ![Example 2](examples/example2.png)
 
+![Example 3](examples/example3.png)
