@@ -1,6 +1,11 @@
 const bin2dec = () => {
     let ibin = document.getElementById("bin").value;
-    ibin.toString();
+    if (ibin.length > 36) {
+        ibin = ibin.substring(0, ibin.length - 1);
+        document.getElementById("bin").value = ibin;
+        document.getElementById("bin").classList.add("error");
+        document.getElementById("bininfo").classList.remove("info");
+    }
     old_ibin = ibin;
     let bin = new String();
     for (let i = 0; i < ibin.length; i++) {
@@ -31,6 +36,12 @@ const horners_scheme = (ibin) => {
 
 const dec2bin = () => {
     let idec = document.getElementById("dec").value;
+    if (idec.length > 12) {
+        idec = idec.substring(0, idec.length - 1);
+        document.getElementById("dec").value = idec;
+        document.getElementById("dec").classList.add("error");
+        document.getElementById("decinfo").classList.remove("info");
+    }
     old_idec = idec;
     idec = parseInt(idec, 10);
     if (old_idec != idec && !isNaN(idec)) {
@@ -42,15 +53,19 @@ const dec2bin = () => {
         idec = 0;
     }
     document.getElementById("dec").value = idec;
-    let bin = new String();
-    while (idec > 0) {
-        bin = (idec % 2).toString() + bin;
-        idec = Math.floor(idec / 2);
-    }
-    document.getElementById("bin").value = bin;
+    document.getElementById("bin").value = tobits(idec);
     setTimeout(function () {
         document.getElementById("dec").classList.remove("error");
     }, 500);
+};
+
+const tobits = (dec) => {
+    let bin = new String();
+    while (dec > 0) {
+        bin = (dec % 2).toString() + bin;
+        dec = Math.floor(dec / 2);
+    }
+    return bin;
 };
 
 const populate_bits = () => {
@@ -59,37 +74,35 @@ const populate_bits = () => {
     let containerdiv = null;
     for (let i = 0; i < 8; i++) {
         containerdiv = document.createElement("div");
-        bit = document.createElement("input");
-        bit.classList.add("bit");
-        bit.value = 0;
-        bit.setAttribute("type", "text");
-        bit.disabled = true;
-        containerdiv.setAttribute("onclick", "bit_flipped(this)");
-        containerdiv.appendChild(bit);
+        containerdiv.innerHTML = 0;
+        containerdiv.setAttribute("onmousedown", "bit_flipped(this)");
+        containerdiv.classList.add("bit");
+        containerdiv.addEventListener("mouseenter", (ev) => {
+            if (ev.buttons == 1) {
+                bit_flipped(ev.target);
+            }
+        });
         bits.appendChild(containerdiv);
     }
-    bit = document.createElement("input");
-    bit.classList.add("bit");
-    bit.value = "=";
-    bit.setAttribute("type", "text");
-    bit.disabled = true;
-    bits.appendChild(bit);
+    let equals = document.createElement("div");
+    equals.classList.add("bit");
+    equals.innerHTML = "=";
+    equals.id = "equals";
+    bits.appendChild(equals);
 
-    bit = document.createElement("input");
-    bit.classList.add("bit");
-    bit.id = "answer";
-    bit.value = 0;
-    bit.setAttribute("type", "text");
-    bit.disabled = true;
-    bits.appendChild(bit);
+    let answer = document.createElement("div");
+    answer.classList.add("bit");
+    answer.id = "answer";
+    answer.innerHTML = "0";
+    bits.appendChild(answer);
 };
 
 const bit_flipped = (el) => {
-    el.firstChild.value = 1 - parseInt(el.firstChild.value);
-    const bits = document.getElementById("bits").getElementsByTagName("input");
+    el.innerHTML = 1 - parseInt(el.innerHTML);
+    const bits = document.getElementById("bits").getElementsByTagName("div");
     let bit_str = new String();
     for (let i = 0; i < 8; i++) {
-        bit_str = bit_str + bits[i].value;
+        bit_str = bit_str + bits[i].innerHTML;
     }
-    document.getElementById("answer").value = horners_scheme(bit_str);
+    document.getElementById("answer").innerHTML = horners_scheme(bit_str);
 };

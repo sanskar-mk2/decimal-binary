@@ -35,9 +35,11 @@ input {
 #bin, #dec {
     padding: 1em;
     margin: 0.5em;
-    width: 80vw;
+    width: 24em;
+    max-width: 80vw;
     border-radius: 5px;
     font-size: 1.1em;
+    text-align: center;
 }
 
 #bininfo, #decinfo {
@@ -55,6 +57,7 @@ html, body {
 h1 {
     padding: 0;
     margin: 0;
+    max-width: 100%;
 }
 
 .error {
@@ -81,11 +84,23 @@ h1 {
 
 .bit {
     width: 1em;
+    height: 1em;
     text-align: center;
     font-size: 1.1em;
     padding: 0.5em;
+    border: 1px solid #fefefe;
+    user-select: none;
+}
+
+.bit:not(#answer, #equals):hover {
+    background-color: #ed3237;
+}
+
+#equals {
+    border: none;
 }
 
 #answer {
     width: 2em;
+    user-select: all;
 }

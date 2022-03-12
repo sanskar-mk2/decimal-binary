@@ -1,5 +1,7 @@
 # Decimal-Binary Converter
 
+![ExampleGIF](examples/examplevid.gif)
+
 ## Overview
 
 Converts decimal to binary and vice-versa.
@@ -11,11 +13,8 @@ Converts decimal to binary and vice-versa.
 -   Converts both ways
 -   Shows result as you enter
 -   Robust error-handling
+-   Bit flipping playground
 
 ## Example Screenshots
 
-![Example 1](examples/example1.png)
-
-![Example 2](examples/example2.png)
-
-![Example 3](examples/example3.png)
+![Example](examples/example_new.png)
